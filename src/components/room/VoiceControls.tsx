@@ -27,7 +27,9 @@ export function VoiceControls({ roomId, className }: VoiceControlsProps) {
   }, [voiceRoomState, roomId]);
 
   const handleJoinVoice = async () => {
-    if (!isConnected) return;
+    if (!isConnected) {
+      return;
+    }
     
     setIsConnecting(true);
     try {
