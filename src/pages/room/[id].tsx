@@ -27,7 +27,7 @@ export default function RoomPage() {
   }, [user, authLoading, router]);
 
   const isOwner = user && room && user.id === room.owner?.id;
-  const isMember = user && room && room.members?.some(member => member.userId === user.id);
+  const isMember = user && room && room.members?.some(member => member.user.id === user.id);
 
   const handleShareRoom = async () => {
     if (!room) return;
@@ -299,7 +299,7 @@ export default function RoomPage() {
                   <div className="space-y-2">
                     {room.members?.map((member) => (
                       <div
-                        key={member.userId}
+                        key={member.user.id}
                         className="flex items-center space-x-3 p-2 rounded-lg bg-secondary-50"
                       >
                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-600 text-white text-sm font-medium">
@@ -308,7 +308,7 @@ export default function RoomPage() {
                         <div className="flex-1">
                           <p className="text-sm font-medium text-secondary-900">
                             {member.user.username}
-                            {member.userId === room.owner?.id && (
+                            {member.user.id === room.owner?.id && (
                               <span className="ml-2 text-xs bg-primary-100 text-primary-700 px-2 py-0.5 rounded">
                                 Owner
                               </span>
