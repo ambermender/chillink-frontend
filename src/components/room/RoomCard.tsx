@@ -21,7 +21,7 @@ export function RoomCard({ room, onRoomUpdate }: RoomCardProps) {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const isOwner = user?.id === room.owner.id;
+  const isOwner = user?.id === room.owner?.id;
   const isMember = room.members?.some(member => member.userId === user?.id);
 
   const handleJoinRoom = async () => {
@@ -121,7 +121,7 @@ export function RoomCard({ room, onRoomUpdate }: RoomCardProps) {
             <div className="flex items-center justify-between text-sm">
               <span className="text-secondary-600">Owner:</span>
               <span className="font-medium text-secondary-900">
-                {room.owner.username}
+                {room.owner?.username || 'Unknown'}
               </span>
             </div>
             <div className="flex items-center justify-between text-sm">
