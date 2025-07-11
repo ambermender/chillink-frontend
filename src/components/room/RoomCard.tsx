@@ -72,9 +72,11 @@ export function RoomCard({ room, onRoomUpdate }: RoomCardProps) {
 
   const handleShareRoom = async () => {
     const roomUrl = generateRoomUrl(room.inviteCode);
-    const success = await copyToClipboard(roomUrl);
-    if (success) {
+    try {
+      await copyToClipboard(roomUrl);
       toast.success('Room link copied to clipboard!');
+    } catch (error) {
+      toast.error('Failed to copy room link');
     }
   };
 
@@ -160,10 +162,10 @@ export function RoomCard({ room, onRoomUpdate }: RoomCardProps) {
                 size="sm"
                 onClick={handleJoinRoom}
                 loading={loading}
-                disabled={room.memberCount >= room.maxMembers}
+                disabled={(room.memberCount ?? 0) >= room.maxMembers}
                 className="flex-1"
               >
-                {room.memberCount >= room.maxMembers ? 'Full' : 'Join Room'}
+                {(room.memberCount ?? 0) >= room.maxMembers ? 'Full' : 'Join Room'}
               </Button>
             )}
           </div>
