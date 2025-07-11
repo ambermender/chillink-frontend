@@ -26,7 +26,7 @@ export default function RoomPage() {
     }
   }, [user, authLoading, router]);
 
-  const isOwner = user && room && user.id === room.owner.id;
+  const isOwner = user && room && user.id === room.owner?.id;
   const isMember = user && room && room.members?.some(member => member.userId === user.id);
 
   const handleShareRoom = async () => {
