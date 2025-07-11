@@ -49,25 +49,26 @@ export function generateRoomUrl(inviteCode: string) {
   return `/join/${inviteCode}`;
 }
 
-export function copyToClipboard(text: string) {
-  if (navigator.clipboard) {
-    return navigator.clipboard.writeText(text);
-  }
-  
-  // Fallback for older browsers
-  const textArea = document.createElement('textarea');
-  textArea.value = text;
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-  
+export async function copyToClipboard(text: string): Promise<boolean> {
   try {
-    document.execCommand('copy');
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+    
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    const success = document.execCommand('copy');
     document.body.removeChild(textArea);
-    return Promise.resolve();
+    return success;
   } catch (err) {
-    document.body.removeChild(textArea);
-    return Promise.reject(err);
+    console.error('Clipboard copy failed:', err);
+    return false;
   }
 }
 
