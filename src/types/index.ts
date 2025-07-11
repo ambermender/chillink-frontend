@@ -86,7 +86,6 @@ export interface SocketEvents {
   'user-joined-voice': (data: { userId: string; username: string }) => void;
   'user-left-voice': (data: { userId: string; username: string }) => void;
   'room-users-updated': (data: { roomId: string; users: VoiceUser[] }) => void;
-  'voice-signal': (data: { signal: any; fromUserId: string; fromUsername: string }) => void;
   'user-mute-status': (data: { userId: string; username: string; isMuted: boolean }) => void;
   error: (data: { message: string; error?: string }) => void;
 }
