@@ -22,7 +22,7 @@ export function RoomCard({ room, onRoomUpdate }: RoomCardProps) {
   const [loading, setLoading] = useState(false);
 
   const isOwner = user?.id === room.owner?.id;
-  const isMember = room.members?.some(member => member.userId === user?.id);
+  const isMember = room.members?.some(member => member.user.id === user?.id);
 
   const handleJoinRoom = async () => {
     if (!user) {
