@@ -157,7 +157,9 @@ export default function RoomPage() {
                   <p className="text-secondary-600 mb-3">{room.description}</p>
                 )}
                 <div className="flex items-center space-x-6 text-sm text-secondary-500">
-                  <span>Owner: <strong className="text-secondary-900">{room.owner.username}</strong></span>
+                  {room.owner?.username && (
+                    <span>Owner: <strong className="text-secondary-900">{room.owner.username}</strong></span>
+                  )}
                   <span>Created: {formatRelativeTime(new Date(room.createdAt))}</span>
                   <span>Members: {room.memberCount}/{room.maxMembers}</span>
                 </div>
@@ -306,7 +308,7 @@ export default function RoomPage() {
                         <div className="flex-1">
                           <p className="text-sm font-medium text-secondary-900">
                             {member.user.username}
-                            {member.userId === room.owner.id && (
+                            {member.userId === room.owner?.id && (
                               <span className="ml-2 text-xs bg-primary-100 text-primary-700 px-2 py-0.5 rounded">
                                 Owner
                               </span>
