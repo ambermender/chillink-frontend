@@ -211,7 +211,7 @@ export default function JoinRoomPage() {
                           </div>
                         </div>
                         
-                        {foundRoom.memberCount >= foundRoom.maxMembers && (
+                        {(foundRoom?.memberCount ?? 0) >= (foundRoom?.maxMembers ?? Infinity) && (
                           <div className="mt-3 p-2 bg-red-50 border border-red-200 rounded text-sm text-red-600">
                             ⚠️ This room is currently full
                           </div>
@@ -247,10 +247,10 @@ export default function JoinRoomPage() {
                   <Button
                     type="submit"
                     loading={loading}
-                    disabled={loading || !foundRoom || (foundRoom.memberCount >= foundRoom.maxMembers)}
+                    disabled={loading || !foundRoom || ((foundRoom?.memberCount ?? 0) >= (foundRoom?.maxMembers ?? Infinity))}
                     className="flex-1"
                   >
-                    {foundRoom?.memberCount >= foundRoom?.maxMembers ? 'Room Full' : 'Join Room'}
+                    {(foundRoom?.memberCount ?? 0) >= (foundRoom?.maxMembers ?? Infinity) ? 'Room Full' : 'Join Room'}
                   </Button>
                 </div>
               </form>
