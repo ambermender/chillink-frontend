@@ -208,7 +208,7 @@ export function VoiceUsersList({ className }: VoiceUsersListProps) {
       <div className="space-y-2">
         {voiceRoomState.users.map((user) => (
           <div
-            key={user.userId}
+            key={user.id}
             className="flex items-center space-x-3 p-2 rounded-lg bg-secondary-50"
           >
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-600 text-white text-sm font-medium">

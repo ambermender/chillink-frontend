@@ -62,6 +62,7 @@ export interface VoiceUser {
   id: string;
   username: string;
   email: string;
+  isMuted?: boolean;
 }
 
 export interface VoiceRoomState {
