@@ -201,7 +201,7 @@ export default function JoinRoomPage() {
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           <div>
                             <span className="text-secondary-600">Owner:</span>
-                            <span className="ml-2 font-medium text-secondary-900">{foundRoom.owner.username}</span>
+                            <span className="ml-2 font-medium text-secondary-900">{foundRoom.owner?.username || 'Unknown'}</span>
                           </div>
                           <div>
                             <span className="text-secondary-600">Members:</span>
